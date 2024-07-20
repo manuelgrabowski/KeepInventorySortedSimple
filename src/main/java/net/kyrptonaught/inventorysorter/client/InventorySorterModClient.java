@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.kyrptonaught.inventorysorter.InventorySorterMod;
 import net.kyrptonaught.inventorysorter.client.config.ConfigOptions;
-import net.kyrptonaught.inventorysorter.network.SyncBlacklistPacket;
+import net.kyrptonaught.inventorysorter.network.SyncIgnoreListPacket;
 import net.kyrptonaught.inventorysorter.network.SyncInvSortSettingsPacket;
 import net.kyrptonaught.kyrptconfig.keybinding.DisplayOnlyKeyBind;
 import net.minecraft.client.util.InputUtil;
@@ -16,7 +16,7 @@ public class InventorySorterModClient implements ClientModInitializer {
         InventorySorterMod.configManager.registerFile("config.json5", new ConfigOptions());
         InventorySorterMod.configManager.load();
         ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> syncConfig());
-        SyncBlacklistPacket.registerReceiveBlackList();
+        SyncIgnoreListPacket.registerReceiveIgnoreList();
 
         KeyBindingHelper.registerKeyBinding(new DisplayOnlyKeyBind(
                 "key.inventorysorter.sort",

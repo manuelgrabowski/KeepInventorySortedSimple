@@ -140,7 +140,7 @@ public class InventoryHelper {
         if (type == null) return true;
         Identifier id = Registries.SCREEN_HANDLER.getId(type);
         if (id == null) return true;
-        return !InventorySorterMod.getBlackList().isDisplayBlacklisted(id);
+        return !InventorySorterMod.getIgnoreList().isDoNotDisplay(id);
     }
 
     public static boolean canSortInventory(PlayerEntity player) {
@@ -159,7 +159,7 @@ public class InventoryHelper {
     }
 
     private static boolean isSortableContainer(ScreenHandler screenHandler, Identifier screenID) {
-        if (InventorySorterMod.getBlackList().isSortBlackListed(screenID))
+        if (InventorySorterMod.getIgnoreList().isDoNotSort(screenID))
             return false;
         if (!((SortableContainer) screenHandler).hasSlots())
             return false;

@@ -5,7 +5,7 @@
   "key.inventorysorter.config.category.display": "Отображать",
   "key.inventorysorter.config.category.logic": "Авто",
   "key.inventorysorter.config.category.activation": "Активация",
-  "key.inventorysorter.config.category.blacklist": "Чёрный список",
+  "key.inventorysorter.config.category.ignorelist": "Чёрный список",
   "key.inventorysorter.config.displaysort": "Отображать кнопку в инвентаре",
   "key.inventorysorter.config.middleclick": "Нажатие колёсиком по слоту, чтобы отсортировать инвентарь",
   "key.inventorysorter.config.doubleclick": "Двойной клик по слоту, чтобы отсортировать инвентарь",
@@ -33,7 +33,7 @@
   "key.inventorysorter.cmd.updatesortingtype": "Обновлённый тип сортировки",
   "key.inventorysorter.cmd.middleClickSort": "Установить нажатие колёсиком, чтобы сортировать ",
   "key.inventorysorter.cmd.doubleClickSort": "Установить слот двойной клик, чтобы сортировать ",
-  "key.inventorysorter.cmd.addblacklist": "Добавлено в чёрный список: ",
+  "key.inventorysorter.cmd.addignorelist": "Добавлено в чёрный список: ",
   "key.inventorysorter.cmd.invalidscreen": "Неверный идентификатор экрана",
 
   "key.inventorysorter.sorttype.name": "Имя",

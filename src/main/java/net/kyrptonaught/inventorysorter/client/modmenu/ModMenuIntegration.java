@@ -27,7 +27,7 @@ public class ModMenuIntegration implements ModMenuApi {
     public ConfigScreenFactory<?> getModConfigScreenFactory() {
         return (screen) -> {
             ConfigOptions options = InventorySorterModClient.getConfig();
-            IgnoreList ignoreList = InventorySorterMod.getBlackList();
+            IgnoreList ignoreList = InventorySorterMod.getIgnoreList();
             ConfigScreen configScreen = new ConfigScreen(screen, Text.translatable("key.inventorysorter.config"));
             configScreen.setSavingEvent(() -> {
                 InventorySorterMod.configManager.save();
@@ -50,15 +50,15 @@ public class ModMenuIntegration implements ModMenuApi {
             activationSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.doubleclick"), options.doubleClickSort, true).setSaveConsumer(val -> options.doubleClickSort = val));
             activationSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.sortmousehighlighted"), options.sortMouseHighlighted, true).setSaveConsumer(val -> options.sortMouseHighlighted = val));
 
-            ConfigSection blackListSection = new ConfigSection(configScreen, Text.translatable("key.inventorysorter.config.category.blacklist"));
+            ConfigSection ignoreListSection = new ConfigSection(configScreen, Text.translatable("key.inventorysorter.config.category.ignorelist"));
 
-            blackListSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.showdebug"), options.debugMode, false).setSaveConsumer(val -> options.debugMode = val).setToolTipWithNewLine("key.inventorysorter.config.debugtooltip"));
+            ignoreListSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.showdebug"), options.debugMode, false).setSaveConsumer(val -> options.debugMode = val).setToolTipWithNewLine("key.inventorysorter.config.debugtooltip"));
 
             StringList hideList = (StringList) new StringList(Text.translatable("key.inventorysorter.config.hidesort"), ignoreList.hideSortBtnsList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.hideSortBtnsList = Sets.newHashSet(val)).setToolTipWithNewLine("key.inventorysorter.config.hidetooltip");
             StringList nosortList = (StringList) new StringList(Text.translatable("key.inventorysorter.config.nosort"), ignoreList.doNotSortList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.doNotSortList = Sets.newHashSet(val)).setToolTipWithNewLine("key.inventorysorter.config.nosorttooltip");
 
-            blackListSection.addConfigItem(hideList);
-            blackListSection.addConfigItem(nosortList);
+            ignoreListSection.addConfigItem(hideList);
+            ignoreListSection.addConfigItem(nosortList);
             return configScreen;
         };
     }

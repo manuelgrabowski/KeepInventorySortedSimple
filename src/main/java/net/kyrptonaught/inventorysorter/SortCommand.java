@@ -5,7 +5,7 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import net.kyrptonaught.inventorysorter.interfaces.InvSorterPlayer;
-import net.kyrptonaught.inventorysorter.network.SyncBlacklistPacket;
+import net.kyrptonaught.inventorysorter.network.SyncIgnoreListPacket;
 import net.minecraft.command.CommandRegistryAccess;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.Registries;
@@ -43,14 +43,14 @@ public class SortCommand {
                     return 1;
                 }));
 
-        invsortCommand.then(CommandManager.literal("blacklist")
+        invsortCommand.then(CommandManager.literal("ignorelist")
                 .requires((source) -> source.hasPermissionLevel(2))
                 .then(CommandManager.literal("doNotSort")
                         .then(CommandManager.argument("screenid", StringArgumentType.greedyString())
-                                .executes(context -> executeBlackList(context, true))))
+                                .executes(context -> executeIgnoreList(context, true))))
                 .then(CommandManager.literal("doNotDisplay")
                         .then(CommandManager.argument("screenid", StringArgumentType.greedyString())
-                                .executes(context -> executeBlackList(context, false)))));
+                                .executes(context -> executeIgnoreList(context, false)))));
 
         for (SortCases.SortType sortType : SortCases.SortType.values()) {
             invsortCommand.then(CommandManager.literal("sortType")
@@ -68,14 +68,14 @@ public class SortCommand {
         dispatcher.register(invsortCommand);
     }
 
-    public static int executeBlackList(CommandContext<ServerCommandSource> commandContext, boolean isDNS) {
+    public static int executeIgnoreList(CommandContext<ServerCommandSource> commandContext, boolean isDNS) {
         String id = StringArgumentType.getString(commandContext, "screenid");
         if (Registries.SCREEN_HANDLER.containsId(Identifier.of(id))) {
-            if (isDNS) InventorySorterMod.getBlackList().doNotSortList.add(id);
-            else InventorySorterMod.getBlackList().hideSortBtnsList.add(id);
+            if (isDNS) InventorySorterMod.getIgnoreList().doNotSortList.add(id);
+            else InventorySorterMod.getIgnoreList().hideSortBtnsList.add(id);
             InventorySorterMod.configManager.save();
-            commandContext.getSource().getServer().getPlayerManager().getPlayerList().forEach(SyncBlacklistPacket::sync);
-            commandContext.getSource().sendFeedback(() -> Text.translatable("key.inventorysorter.cmd.addblacklist").append(id), false);
+            commandContext.getSource().getServer().getPlayerManager().getPlayerList().forEach(SyncIgnoreListPacket::sync);
+            commandContext.getSource().sendFeedback(() -> Text.translatable("key.inventorysorter.cmd.addignorelist").append(id), false);
         } else
             commandContext.getSource().sendFeedback(() -> Text.translatable("key.inventorysorter.cmd.invalidscreen"), false);
         return 1;

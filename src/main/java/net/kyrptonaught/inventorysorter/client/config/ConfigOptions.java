@@ -29,6 +29,7 @@ public class ConfigOptions implements AbstractConfigFile {
     @Comment("Should sort half of open inv highlighted by mouse")
     public Boolean sortMouseHighlighted = true;
 
+    @Comment("Show extra info about ignore list in tooltip")
     public boolean debugMode = false;
 
 }

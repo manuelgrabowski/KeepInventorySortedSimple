@@ -5,7 +5,7 @@
   "key.inventorysorter.config.category.display": "Affichage",
   "key.inventorysorter.config.category.logic": "Logique",
   "key.inventorysorter.config.category.activation": "Activation",
-  "key.inventorysorter.config.category.blacklist": "Liste noire",
+  "key.inventorysorter.config.category.ignorelist": "Liste noire",
   "key.inventorysorter.config.displaysort": "Affichage du bouton dans l'inventaire",
   "key.inventorysorter.config.middleclick": "Clic du milieu pour trier l'inventaire",
   "key.inventorysorter.config.doubleclick": "Double clic pour trier l'inventaire",
@@ -33,7 +33,7 @@
   "key.inventorysorter.cmd.updatesortingtype": "Type de tri mis à jour",
   "key.inventorysorter.cmd.middleClickSort": "Définir le tri du clic du milieu sur ",
   "key.inventorysorter.cmd.doubleClickSort": "Définir le tri du double clic sur ",
-  "key.inventorysorter.cmd.addblacklist": "Ajouté à la liste noire: ",
+  "key.inventorysorter.cmd.addignorelist": "Ajouté à la liste noire: ",
   "key.inventorysorter.cmd.invalidscreen": "ID d'écran non valide",
 
   "key.inventorysorter.sorttype.name": "Nom",
@@ -48,5 +48,5 @@
   "key.inventorysorter.sortbtn.clickhere": "Cliquez ici",
   "key.inventorysorter.sortbtn.dnsadd": " pour l'ajouter automatiquement à la liste 'Inventaire à ne pas trier'",
   "key.inventorysorter.sortbtn.dndadd": " pour l'ajouter automatiquement à la liste 'Masquer les boutons de tri'",
-  "key.inventorysorter.sortbtn.error": "Écran non blacklistable ou écran déjà blacklisté"
+  "key.inventorysorter.sortbtn.error": "Écran non ignorable ou écran déjà ignore listé"
 }

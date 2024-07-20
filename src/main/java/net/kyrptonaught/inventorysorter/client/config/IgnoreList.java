@@ -49,11 +49,11 @@ public class IgnoreList implements AbstractConfigFile {
             Identifier.of("bankstorage:bank_7")
     );
 
-    public boolean isSortBlackListed(Identifier screenHandlerTypeID) {
-        return isDisplayBlacklisted(screenHandlerTypeID) || doNotSortList.contains(screenHandlerTypeID.toString()) || defaultDoNotSortList.contains(screenHandlerTypeID);
+    public boolean isDoNotSort(Identifier screenHandlerTypeID) {
+        return isDoNotDisplay(screenHandlerTypeID) || doNotSortList.contains(screenHandlerTypeID.toString()) || defaultDoNotSortList.contains(screenHandlerTypeID);
     }
 
-    public boolean isDisplayBlacklisted(Identifier screenHandlerTypeID) {
+    public boolean isDoNotDisplay(Identifier screenHandlerTypeID) {
         return defaultHideSortBtnsList.contains(screenHandlerTypeID) || hideSortBtnsList.contains(screenHandlerTypeID.toString());
     }
 }

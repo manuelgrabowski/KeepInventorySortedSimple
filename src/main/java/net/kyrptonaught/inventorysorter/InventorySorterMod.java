@@ -6,7 +6,7 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.kyrptonaught.inventorysorter.client.config.IgnoreList;
 import net.kyrptonaught.inventorysorter.interfaces.InvSorterPlayer;
 import net.kyrptonaught.inventorysorter.network.InventorySortPacket;
-import net.kyrptonaught.inventorysorter.network.SyncBlacklistPacket;
+import net.kyrptonaught.inventorysorter.network.SyncIgnoreListPacket;
 import net.kyrptonaught.inventorysorter.network.SyncInvSortSettingsPacket;
 import net.kyrptonaught.kyrptconfig.config.ConfigManager;
 import org.slf4j.Logger;
@@ -20,12 +20,12 @@ public class InventorySorterMod implements ModInitializer {
 
     @Override
     public void onInitialize() {
-        configManager.registerFile("blacklist.json5", new IgnoreList());
+        configManager.registerFile("ignorelist.json5", new IgnoreList());
         configManager.load();
         CommandRegistrationCallback.EVENT.register(SortCommand::register);
         InventorySortPacket.registerReceivePacket();
         SyncInvSortSettingsPacket.registerReceiveSyncData();
-        SyncBlacklistPacket.registerSyncOnPlayerJoin();
+        SyncIgnoreListPacket.registerSyncOnPlayerJoin();
 
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
             if (oldPlayer instanceof InvSorterPlayer) {
@@ -35,7 +35,7 @@ public class InventorySorterMod implements ModInitializer {
         });
     }
 
-    public static IgnoreList getBlackList() {
-        return (IgnoreList) configManager.getConfig("blacklist.json5");
+    public static IgnoreList getIgnoreList() {
+        return (IgnoreList) configManager.getConfig("ignorelist.json5");
     }
 }
