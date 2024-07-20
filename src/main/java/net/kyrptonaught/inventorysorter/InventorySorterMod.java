@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 
 
 public class InventorySorterMod implements ModInitializer {
-    public static ConfigManager.MultiConfigManager configManager = new ConfigManager.MultiConfigManager(InventorySorterMod.MOD_ID);
+    public static final ConfigManager.MultiConfigManager configManager = new ConfigManager.MultiConfigManager(InventorySorterMod.MOD_ID);
     public static final String MOD_ID = "inventorysorter";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 

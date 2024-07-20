@@ -36,7 +36,7 @@ public abstract class MixinContainer implements SortableContainer {
 
     @Override
     public boolean hasSlots() {
-        return this.slots.size() > 0;
+        return !this.slots.isEmpty();
     }
 
 

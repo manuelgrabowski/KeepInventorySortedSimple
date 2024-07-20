@@ -72,18 +72,15 @@ public class InventoryHelper {
         return Text.translatable("key.inventorysorter.sorting.error");
     }
 
-    public static boolean sortInv(PlayerEntity player, boolean sortPlayerInv, SortCases.SortType sortType) {
+    public static void sortInv(PlayerEntity player, boolean sortPlayerInv, SortCases.SortType sortType) {
         if (sortPlayerInv) {
             sortInv(player.getInventory(), 9, 27, sortType);
-            return true;
         } else if (canSortInventory(player)) {
             Inventory inv = ((SortableContainer) player.currentScreenHandler).getInventory();
             if (inv != null) {
                 sortInv(inv, 0, inv.size(), sortType);
-                return true;
             }
         }
-        return false;
     }
 
     static void sortInv(Inventory inv, int startSlot, int invSize, SortCases.SortType sortType) {
@@ -92,7 +89,7 @@ public class InventoryHelper {
             addStackWithMerge(stacks, inv.getStack(startSlot + i));
 
         stacks.sort(Comparator.comparing(stack -> SortCases.getStringForSort(stack, sortType)));
-        if (stacks.size() == 0) return;
+        if (stacks.isEmpty()) return;
         for (int i = 0; i < invSize; i++)
             inv.setStack(startSlot + i, i < stacks.size() ? stacks.get(i) : ItemStack.EMPTY);
         inv.markDirty();

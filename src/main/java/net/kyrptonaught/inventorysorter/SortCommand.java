@@ -76,6 +76,7 @@ public class SortCommand {
             InventorySorterMod.configManager.save();
             commandContext.getSource().getServer().getPlayerManager().getPlayerList().forEach(SyncIgnoreListPacket::sync);
             commandContext.getSource().sendFeedback(() -> Text.translatable("key.inventorysorter.cmd.addignorelist").append(id), false);
+            return 0;
         } else
             commandContext.getSource().sendFeedback(() -> Text.translatable("key.inventorysorter.cmd.invalidscreen"), false);
         return 1;

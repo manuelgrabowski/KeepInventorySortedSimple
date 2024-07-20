@@ -10,10 +10,9 @@ import net.kyrptonaught.inventorysorter.network.InventorySortPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ButtonTextures;
-import net.minecraft.client.gui.tooltip.Tooltip;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.ClickEvent;
 import net.minecraft.text.MutableText;
@@ -40,10 +39,15 @@ public class SortButtonWidget extends TexturedButtonWidget {
     @Override
     public void onPress() {
         if (GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_CONTROL) == 1) {
-            if (InventoryHelper.canSortInventory(MinecraftClient.getInstance().player)) {
-                String screenID = Registries.SCREEN_HANDLER.getId(MinecraftClient.getInstance().player.currentScreenHandler.getType()).toString();
-                System.out.println("Add the line below to config/inventorysorter/ignorelist.json5 to blacklist this inventory");
-                System.out.println(screenID);
+            ClientPlayerEntity player = MinecraftClient.getInstance().player;
+            if (player != null && InventoryHelper.canSortInventory(player)) {
+                String screenID;
+                Identifier screenIdentifier = Registries.SCREEN_HANDLER.getId(MinecraftClient.getInstance().player.currentScreenHandler.getType());
+                if(screenIdentifier != null) {
+                    screenID = screenIdentifier.toString();
+                } else {
+                    screenID = "Unable to determine Screen ID";
+                }
 
                 MutableText MODID = Text.literal("[" + InventorySorterMod.MOD_ID + "]: ").formatted(Formatting.BLUE);
                 MutableText autoDNS = (Text.translatable("key.inventorysorter.sortbtn.clickhere")).formatted(Formatting.UNDERLINE, Formatting.WHITE)

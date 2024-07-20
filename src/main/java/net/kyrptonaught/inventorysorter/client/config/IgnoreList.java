@@ -17,7 +17,7 @@ public class IgnoreList implements AbstractConfigFile {
     @Comment("Neither the opened inventory, nor your player inventory will be sortable when this inventory is opened")
     public HashSet<String> hideSortBtnsList = new HashSet<>();
 
-    public transient HashSet<Identifier> defaultHideSortBtnsList = Sets.newHashSet(
+    public final transient HashSet<Identifier> defaultHideSortBtnsList = Sets.newHashSet(
             Identifier.of("guild:quest_screen"),
             Identifier.of("ae2:crystal_growth"),
             Identifier.of("ae2:advanced_inscriber"),
@@ -34,7 +34,7 @@ public class IgnoreList implements AbstractConfigFile {
             Identifier.of("dankstorage:portable_dank_7")
     );
 
-    public transient HashSet<Identifier> defaultDoNotSortList = Sets.newHashSet(
+    public final transient HashSet<Identifier> defaultDoNotSortList = Sets.newHashSet(
             Registries.SCREEN_HANDLER.getId(ScreenHandlerType.CRAFTING),
             Identifier.of("adorn:trading_station"),
             Identifier.of("guild:quest_screen"),

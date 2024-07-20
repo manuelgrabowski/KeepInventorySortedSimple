@@ -11,7 +11,6 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.util.InputUtil;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.slot.Slot;
@@ -104,7 +103,7 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
 
     @Override
     public int getMiddleHeight() {
-        if (this.handler.slots.size() == 0) return 0;
+        if (this.handler.slots.isEmpty()) return 0;
         return this.handler.getSlot(this.handler.slots.size() - 36).y - 12;
     }
 }

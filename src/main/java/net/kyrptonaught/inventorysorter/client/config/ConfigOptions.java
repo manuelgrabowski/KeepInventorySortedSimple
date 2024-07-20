@@ -24,7 +24,7 @@ public class ConfigOptions implements AbstractConfigFile {
     public boolean displayTooltip = true;
 
     @Comment("Sort Inventory key")
-    public CustomKeyBinding keybinding = CustomKeyBinding.configDefault(InventorySorterMod.MOD_ID, "key.keyboard.p");
+    public final CustomKeyBinding keybinding = CustomKeyBinding.configDefault(InventorySorterMod.MOD_ID, "key.keyboard.p");
 
     @Comment("Should sort half of open inv highlighted by mouse")
     public Boolean sortMouseHighlighted = true;
