@@ -38,8 +38,8 @@ public record SyncIgnoreListPacket(ByteBuf buffer) implements CustomPayload {
         IgnoreList ignoreList = KeepInventorySortedSimple.getIgnoreList();
         PacketByteBuf buf = new PacketByteBuf(Unpooled.buffer());
 
-        String[] hideList = new String[ignoreList.hideSortBtnsList.size()];
-        hideList = ignoreList.hideSortBtnsList.toArray(hideList);
+        String[] hideList = new String[ignoreList.hideSortButtonList.size()];
+        hideList = ignoreList.hideSortButtonList.toArray(hideList);
         buf.writeInt(hideList.length);
         for (String value : hideList) buf.writeString(value);
 
@@ -56,7 +56,7 @@ public record SyncIgnoreListPacket(ByteBuf buffer) implements CustomPayload {
             PacketByteBuf packet = new PacketByteBuf(payload.buffer);
             int numHides = packet.readInt();
             for (int i = 0; i < numHides; i++)
-                KeepInventorySortedSimple.getIgnoreList().hideSortBtnsList.add(packet.readString());
+                KeepInventorySortedSimple.getIgnoreList().hideSortButtonList.add(packet.readString());
 
             int numNoSort = packet.readInt();
             for (int i = 0; i < numNoSort; i++)

@@ -11,13 +11,13 @@ import java.util.HashSet;
 
 public class IgnoreList implements AbstractConfigFile {
 
-    @Comment("The opened inventory's sort button will not be visible, only the player's when this inventory is opened")
+    @Comment("Neither the opened inventory, nor your player inventory will be sortable when this inventory is opened")
     public HashSet<String> doNotSortList = new HashSet<>();
 
-    @Comment("Neither the opened inventory, nor your player inventory will be sortable when this inventory is opened")
-    public HashSet<String> hideSortBtnsList = new HashSet<>();
+    @Comment("The opened inventory's sort button will not be visible, only the player's when this inventory is opened")
+    public HashSet<String> hideSortButtonList = new HashSet<>();
 
-    public final transient HashSet<Identifier> defaultHideSortBtnsList = Sets.newHashSet(
+    public final transient HashSet<Identifier> defaultHideSortButtonList = Sets.newHashSet(
             Identifier.of("guild:quest_screen"),
             Identifier.of("ae2:crystal_growth"),
             Identifier.of("ae2:advanced_inscriber"),
@@ -54,6 +54,6 @@ public class IgnoreList implements AbstractConfigFile {
     }
 
     public boolean isDoNotDisplay(Identifier screenHandlerTypeID) {
-        return defaultHideSortBtnsList.contains(screenHandlerTypeID) || hideSortBtnsList.contains(screenHandlerTypeID.toString());
+        return defaultHideSortButtonList.contains(screenHandlerTypeID) || hideSortButtonList.contains(screenHandlerTypeID.toString());
     }
 }

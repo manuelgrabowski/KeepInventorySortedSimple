@@ -34,7 +34,7 @@ public class KeepInventorySortedSimpleClient implements ClientModInitializer {
         return (ConfigOptions) KeepInventorySortedSimple.configManager.getConfig("config.json5");
     }
 
-    public static boolean isKeybindPressed(int pressedKeyCode, InputUtil.Type type) {
+    public static boolean isKeyBindingPressed(int pressedKeyCode, InputUtil.Type type) {
         return getConfig().keybinding.matches(pressedKeyCode, type);
     }
 }

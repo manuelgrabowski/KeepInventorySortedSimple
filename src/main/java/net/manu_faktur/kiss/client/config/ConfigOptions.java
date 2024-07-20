@@ -8,13 +8,13 @@ import net.kyrptonaught.kyrptconfig.keybinding.CustomKeyBinding;
 
 public class ConfigOptions implements AbstractConfigFile {
 
-    @Comment("Enable 'Sort' button in inventorys")
+    @Comment("Enable 'Sort' button in inventories")
     public boolean displaySort = true;
-    @Comment("Enable second 'Sort' button in player inv")
-    public boolean seperateBtn = true;
-    @Comment("Sorting inv also sorts player inv")
+    @Comment("Enable second 'Sort' button in player inventory")
+    public boolean separateBtn = true;
+    @Comment("Sorting also sorts player inventory")
     public boolean sortPlayer = false;
-    @Comment("Method of sorting, NAME,CATEGORY,MOD")
+    @Comment("Method of sorting: NAME,CATEGORY,MOD,ID")
     public SortCases.SortType sortType = SortCases.SortType.NAME;
     @Comment("Display Sort Button Tooltip")
     public boolean displayTooltip = true;
@@ -22,7 +22,7 @@ public class ConfigOptions implements AbstractConfigFile {
     @Comment("Sort Inventory keybinding")
     public final CustomKeyBinding keybinding = CustomKeyBinding.configDefault(KeepInventorySortedSimple.MOD_ID, "key.mouse.middle");
 
-    @Comment("Should sort half of open inv highlighted by mouse")
+    @Comment("Sort the inventory that the mouse cursor is hovering over")
     public Boolean sortMouseHighlighted = true;
 
     @Comment("Show extra info about ignore list in tooltip")

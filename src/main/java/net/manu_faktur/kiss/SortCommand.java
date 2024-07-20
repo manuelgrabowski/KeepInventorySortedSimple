@@ -70,7 +70,7 @@ public class SortCommand {
         String id = StringArgumentType.getString(commandContext, "screenid");
         if (Registries.SCREEN_HANDLER.containsId(Identifier.of(id))) {
             if (isDNS) KeepInventorySortedSimple.getIgnoreList().doNotSortList.add(id);
-            else KeepInventorySortedSimple.getIgnoreList().hideSortBtnsList.add(id);
+            else KeepInventorySortedSimple.getIgnoreList().hideSortButtonList.add(id);
             KeepInventorySortedSimple.configManager.save();
             commandContext.getSource().getServer().getPlayerManager().getPlayerList().forEach(SyncIgnoreListPacket::sync);
             commandContext.getSource().sendFeedback(() -> Text.translatable("net.manu_faktur.kiss.cmd.addignorelist").append(id), false);

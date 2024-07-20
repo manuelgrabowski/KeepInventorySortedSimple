@@ -130,7 +130,7 @@ public class InventoryHelper {
         return ItemStack.areItemsAndComponentsEqual(itemStack_1, itemStack_2);
     }
 
-    public static boolean shouldDisplayBtns(PlayerEntity player) {
+    public static boolean shouldDisplayButton(PlayerEntity player) {
         if (player.currentScreenHandler == null || !player.currentScreenHandler.canUse(player) || player.currentScreenHandler instanceof PlayerScreenHandler)
             return true;
         ScreenHandlerType<?> type = ((ScreenHandlerTypeAccessor) player.currentScreenHandler).gettype();

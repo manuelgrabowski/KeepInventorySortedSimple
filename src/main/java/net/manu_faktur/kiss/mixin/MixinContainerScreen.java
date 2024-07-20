@@ -52,10 +52,10 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
     private void invsort$init(CallbackInfo callbackinfo) {
         if (client == null || client.player == null)
             return;
-        if (KeepInventorySortedSimpleClient.getConfig().displaySort && InventoryHelper.shouldDisplayBtns(client.player)) {
+        if (KeepInventorySortedSimpleClient.getConfig().displaySort && InventoryHelper.shouldDisplayButton(client.player)) {
             boolean playerOnly = !InventoryHelper.canSortInventory(client.player);
             this.addDrawableChild(invsort$SortBtn = new SortButtonWidget(this.x + this.backgroundWidth - 20, this.y + (playerOnly ? (backgroundHeight - 95) : 6), playerOnly));
-            if (!playerOnly && KeepInventorySortedSimpleClient.getConfig().seperateBtn)
+            if (!playerOnly && KeepInventorySortedSimpleClient.getConfig().separateBtn)
                 this.addDrawableChild(new SortButtonWidget(invsort$SortBtn.getX(), this.y + ((SortableContainerScreen) (this)).getMiddleHeight(), true));
         }
     }
@@ -64,7 +64,7 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
     private void invsort$mouseClicked(double x, double y, int button, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (client == null || client.player == null)
             return;
-        if (KeepInventorySortedSimpleClient.isKeybindPressed(button, InputUtil.Type.MOUSE)) {
+        if (KeepInventorySortedSimpleClient.isKeyBindingPressed(button, InputUtil.Type.MOUSE)) {
             boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
             if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
                 if (focusedSlot != null)
@@ -79,7 +79,7 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
     private void invsort$keyPressed(int keycode, int scancode, int modifiers, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (client == null || client.player == null)
             return;
-        if (KeepInventorySortedSimpleClient.isKeybindPressed(keycode, InputUtil.Type.KEYSYM)) {
+        if (KeepInventorySortedSimpleClient.isKeyBindingPressed(keycode, InputUtil.Type.KEYSYM)) {
             boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
             if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
                 if (focusedSlot != null)

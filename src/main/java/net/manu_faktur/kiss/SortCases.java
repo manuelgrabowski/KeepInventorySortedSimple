@@ -60,7 +60,7 @@ public class SortCases {
         if (item instanceof EnchantedBookItem)
             sortString = enchantedBookNameCase(stack);
         if (item instanceof ToolItem)
-            sortString = toolDuribilityCase(stack);
+            sortString = toolDurabilityCase(stack);
 
         if (component != null && item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock){
             ContainerComponent container = stack.get(DataComponentTypes.CONTAINER);
@@ -122,7 +122,7 @@ public class SortCases {
         return stack.getItem().toString() + " " + enchantmentsComponent.getSize() + " " + enchantNames;
     }
 
-    private static String toolDuribilityCase(ItemStack stack) {
+    private static String toolDurabilityCase(ItemStack stack) {
         return stack.getItem().toString() + stack.getDamage();
     }
 

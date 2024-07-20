@@ -37,7 +37,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
             ConfigSection displaySection = new ConfigSection(configScreen, Text.translatable("net.manu_faktur.kiss.config.category.display"));
             displaySection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.displaysort"), options.displaySort, true).setSaveConsumer(val -> options.displaySort = val));
-            displaySection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.seperatebtn"), options.seperateBtn, true).setSaveConsumer(val -> options.seperateBtn = val));
+            displaySection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.seperatebtn"), options.separateBtn, true).setSaveConsumer(val -> options.separateBtn = val));
             displaySection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.displaytooltip"), options.displayTooltip, true).setSaveConsumer(val -> options.displayTooltip = val));
 
             ConfigSection logicSection = new ConfigSection(configScreen, Text.translatable("net.manu_faktur.kiss.config.category.logic"));
@@ -52,7 +52,7 @@ public class ModMenuIntegration implements ModMenuApi {
 
             ignoreListSection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.showdebug"), options.debugMode, false).setSaveConsumer(val -> options.debugMode = val).setToolTipWithNewLine("net.manu_faktur.kiss.config.debugtooltip"));
 
-            StringList hideList = (StringList) new StringList(Text.translatable("net.manu_faktur.kiss.config.hidesort"), ignoreList.hideSortBtnsList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.hideSortBtnsList = Sets.newHashSet(val)).setToolTipWithNewLine("net.manu_faktur.kiss.config.hidetooltip");
+            StringList hideList = (StringList) new StringList(Text.translatable("net.manu_faktur.kiss.config.hidesort"), ignoreList.hideSortButtonList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.hideSortButtonList = Sets.newHashSet(val)).setToolTipWithNewLine("net.manu_faktur.kiss.config.hidetooltip");
             StringList nosortList = (StringList) new StringList(Text.translatable("net.manu_faktur.kiss.config.nosort"), ignoreList.doNotSortList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.doNotSortList = Sets.newHashSet(val)).setToolTipWithNewLine("net.manu_faktur.kiss.config.nosorttooltip");
 
             ignoreListSection.addConfigItem(hideList);
