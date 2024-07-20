@@ -1,14 +1,19 @@
 package net.kyrptonaught.inventorysorter;
 
 import it.unimi.dsi.fastutil.objects.Object2IntMap;
+import net.minecraft.block.ShulkerBoxBlock;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
+import net.minecraft.component.type.ContainerComponent;
 import net.minecraft.component.type.ItemEnchantmentsComponent;
 import net.minecraft.component.type.ProfileComponent;
 import net.minecraft.enchantment.Enchantment;
+import net.minecraft.inventory.Inventories;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.collection.DefaultedList;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,16 +53,34 @@ public class SortCases {
     private static String specialCases(ItemStack stack) {
         Item item = stack.getItem();
         ComponentMap component = stack.getComponents();
+        String sortString = item.toString();
 
         if (component != null && component.contains(DataComponentTypes.PROFILE))
-            return playerHeadCase(stack);
+            sortString = playerHeadCase(stack);
         if (stack.getCount() != stack.getMaxCount())
-            return stackSize(stack);
+            sortString = stackSize(stack);
         if (item instanceof EnchantedBookItem)
-            return enchantedBookNameCase(stack);
+            sortString = enchantedBookNameCase(stack);
         if (item instanceof ToolItem)
-            return toolDuribilityCase(stack);
-        return item.toString();
+            sortString = toolDuribilityCase(stack);
+
+        if (component != null && item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock){
+            ContainerComponent container = stack.get(DataComponentTypes.CONTAINER);
+            if (container != null){
+                DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(27, ItemStack.EMPTY);
+                container.copyTo(defaultedList);
+
+                List<String> stringList = new ArrayList<>(27);
+                for (ItemStack itemStack : defaultedList) {
+                    stringList.add(itemStack.getItem().toString());
+                }
+                sortString = "minecraft:shulker_box" // group all shulkerboxes together
+                        + String.join(" ", stringList) // sort them by their content
+                        + item; // sort boxes with identical content by their color
+            }
+        }
+
+        return sortString;
     }
 
     private static String playerHeadCase(ItemStack stack) {
