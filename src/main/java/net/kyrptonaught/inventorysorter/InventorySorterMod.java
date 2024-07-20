@@ -30,7 +30,6 @@ public class InventorySorterMod implements ModInitializer {
         ServerPlayerEvents.COPY_FROM.register((oldPlayer, newPlayer, alive) -> {
             if (oldPlayer instanceof InvSorterPlayer) {
                 ((InvSorterPlayer) newPlayer).setSortType(((InvSorterPlayer) oldPlayer).getSortType());
-                ((InvSorterPlayer) newPlayer).setMiddleClick(((InvSorterPlayer) oldPlayer).getMiddleClick());
             }
         });
     }

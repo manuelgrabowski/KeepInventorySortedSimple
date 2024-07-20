@@ -45,9 +45,7 @@ public class ModMenuIntegration implements ModMenuApi {
             logicSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.sortplayer"), options.sortPlayer, false).setSaveConsumer(val -> options.sortPlayer = val));
 
             ConfigSection activationSection = new ConfigSection(configScreen, Text.translatable("key.inventorysorter.config.category.activation"));
-            activationSection.addConfigItem(new KeybindItem(Text.translatable("key.inventorysorter.sort"), options.keybinding.rawKey, "key.keyboard.p").setSaveConsumer(key -> options.keybinding.setRaw(key)));
-            activationSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.middleclick"), options.middleClick, true).setSaveConsumer(val -> options.middleClick = val));
-            activationSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.doubleclick"), options.doubleClickSort, true).setSaveConsumer(val -> options.doubleClickSort = val));
+            activationSection.addConfigItem(new KeybindItem(Text.translatable("key.inventorysorter.sort"), options.keybinding.rawKey, "key.mouse.middle").setSaveConsumer(key -> options.keybinding.setRaw(key)));
             activationSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.sortmousehighlighted"), options.sortMouseHighlighted, true).setSaveConsumer(val -> options.sortMouseHighlighted = val));
 
             ConfigSection ignoreListSection = new ConfigSection(configScreen, Text.translatable("key.inventorysorter.config.category.ignorelist"));

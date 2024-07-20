@@ -16,19 +16,18 @@ import net.minecraft.network.packet.CustomPayload;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
 
-public record SyncInvSortSettingsPacket(boolean middleClick, boolean doubleClick,
-                                        int sortType) implements CustomPayload {
+public record SyncInvSortSettingsPacket(int sortType) implements CustomPayload {
     private static final CustomPayload.Id<SyncInvSortSettingsPacket> ID = new CustomPayload.Id<>(Identifier.of("inventorysorter", "sync_settings_packet"));
     private static final PacketCodec<RegistryByteBuf, SyncInvSortSettingsPacket> CODEC = CustomPayload.codecOf(SyncInvSortSettingsPacket::write, SyncInvSortSettingsPacket::new);
 
     public SyncInvSortSettingsPacket(PacketByteBuf buf) {
-        this(buf.readBoolean(), buf.readBoolean(), buf.readInt());
+        this(buf.readInt());
     }
 
     @Environment(EnvType.CLIENT)
     public static void registerSyncOnPlayerJoin() {
         ConfigOptions config = InventorySorterModClient.getConfig();
-        ClientPlayNetworking.send(new SyncInvSortSettingsPacket(config.middleClick, config.doubleClickSort, config.sortType.ordinal()));
+        ClientPlayNetworking.send(new SyncInvSortSettingsPacket(config.sortType.ordinal()));
     }
 
     public static void registerReceiveSyncData() {
@@ -36,16 +35,12 @@ public record SyncInvSortSettingsPacket(boolean middleClick, boolean doubleClick
         ServerPlayNetworking.registerGlobalReceiver(SyncInvSortSettingsPacket.ID, ((payload, context) -> {
             ServerPlayerEntity player = context.player();
             player.getServer().execute(() -> {
-                ((InvSorterPlayer) player).setMiddleClick(payload.middleClick);
-                ((InvSorterPlayer) player).setDoubleClickSort(payload.doubleClick);
                 ((InvSorterPlayer) player).setSortType(SortCases.SortType.values()[payload.sortType]);
             });
         }));
     }
 
     public void write(PacketByteBuf buf) {
-        buf.writeBoolean(middleClick);
-        buf.writeBoolean(doubleClick);
         buf.writeInt(sortType);
     }
 

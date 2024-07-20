@@ -31,8 +31,6 @@
   "key.inventorysorter.sorting.error": "Impossible de trier l'inventaire",
 
   "key.inventorysorter.cmd.updatesortingtype": "Type de tri mis à jour",
-  "key.inventorysorter.cmd.middleClickSort": "Définir le tri du clic du milieu sur ",
-  "key.inventorysorter.cmd.doubleClickSort": "Définir le tri du double clic sur ",
   "key.inventorysorter.cmd.addignorelist": "Ajouté à la liste noire: ",
   "key.inventorysorter.cmd.invalidscreen": "ID d'écran non valide",
 

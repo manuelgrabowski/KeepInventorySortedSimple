@@ -31,8 +31,6 @@
   "key.inventorysorter.sorting.error": "Ошибка отсортировки инвентаря",
 
   "key.inventorysorter.cmd.updatesortingtype": "Обновлённый тип сортировки",
-  "key.inventorysorter.cmd.middleClickSort": "Установить нажатие колёсиком, чтобы сортировать ",
-  "key.inventorysorter.cmd.doubleClickSort": "Установить слот двойной клик, чтобы сортировать ",
   "key.inventorysorter.cmd.addignorelist": "Добавлено в чёрный список: ",
   "key.inventorysorter.cmd.invalidscreen": "Неверный идентификатор экрана",
 

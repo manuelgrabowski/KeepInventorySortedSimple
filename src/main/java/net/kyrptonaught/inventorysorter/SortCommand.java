@@ -62,8 +62,6 @@ public class SortCommand {
                                 return 1;
                             })));
         }
-        registerBooleanCommand(invsortCommand, "middleClickSort", Text.translatable("key.inventorysorter.cmd.middleClickSort"), (player, value) -> ((InvSorterPlayer) player).setMiddleClick(value));
-        registerBooleanCommand(invsortCommand, "doubleClickSort", Text.translatable("key.inventorysorter.cmd.doubleClickSort"), (player, value) -> ((InvSorterPlayer) player).setDoubleClickSort(value));
 
         dispatcher.register(invsortCommand);
     }

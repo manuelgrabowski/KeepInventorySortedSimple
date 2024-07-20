@@ -31,8 +31,6 @@
   "key.inventorysorter.sorting.error": "Could not sort inventory",
 
   "key.inventorysorter.cmd.updatesortingtype": "Updated Sorting Type",
-  "key.inventorysorter.cmd.middleClickSort": "Set Middle click slot to sort to ",
-  "key.inventorysorter.cmd.doubleClickSort": "Set Double click slot to sort to ",
   "key.inventorysorter.cmd.addignorelist": "Added to ignore list: ",
   "key.inventorysorter.cmd.invalidscreen": "Screen ID not valid",
 
