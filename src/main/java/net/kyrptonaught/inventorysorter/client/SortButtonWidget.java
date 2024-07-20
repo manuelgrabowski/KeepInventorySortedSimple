@@ -39,7 +39,7 @@ public class SortButtonWidget extends TexturedButtonWidget {
 
     @Override
     public void onPress() {
-        if (InventorySorterModClient.getConfig().debugMode && GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_CONTROL) == 1) {
+        if (GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_CONTROL) == 1) {
             if (InventoryHelper.canSortInventory(MinecraftClient.getInstance().player)) {
                 String screenID = Registries.SCREEN_HANDLER.getId(MinecraftClient.getInstance().player.currentScreenHandler.getType()).toString();
                 System.out.println("Add the line below to config/inventorysorter/ignorelist.json5 to blacklist this inventory");
@@ -94,7 +94,7 @@ public class SortButtonWidget extends TexturedButtonWidget {
         if (InventorySorterModClient.getConfig().displayTooltip && this.isHovered()) {
             List<Text> lines = new ArrayList<>();
             lines.add(Text.translatable("key.inventorysorter.sortbtn.sort").append(Text.translatable(InventorySorterModClient.getConfig().sortType.getTranslationKey())));
-            if (GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_CONTROL) == 1) {
+            if (InventorySorterModClient.getConfig().debugMode) {
                 lines.add(Text.translatable("key.inventorysorter.sortbtn.debug"));
                 lines.add(Text.translatable("key.inventorysorter.sortbtn.debug2"));
             }
