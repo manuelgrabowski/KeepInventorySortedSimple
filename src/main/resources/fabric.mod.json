@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "inventorysorter",
+  "version": "1.9.0-1.21",
+  "name": "Inventory Sorter",
+  "description": "Quickly and easily sort inventorys",
+  "authors": [
+    "kyrptonaught"
+  ],
+  "contact": {
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/inventory-sorting",
+    "sources": "https://github.com/kyrptonaught/Inventory-Sorter"
+  },
+  "license": "MIT",
+  "icon": "assets/inventorysorter/icon.png",
+  "environment": "*",
+  "mixins": [
+    {
+      "config": "net.kyrptonaught.inventorysorter.json",
+      "environment": "*"
+    }
+  ],
+  "entrypoints": {
+    "main": [
+      "net.kyrptonaught.inventorysorter.InventorySorterMod"
+    ],
+    "client": [
+      "net.kyrptonaught.inventorysorter.client.InventorySorterModClient"
+    ],
+    "modmenu": [
+      "net.kyrptonaught.inventorysorter.client.modmenu.ModMenuIntegration"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "fabric": "*",
+    "java": ">=21"
+  }
+}
