@@ -1,34 +1,35 @@
 {
   "schemaVersion": 1,
-  "id": "inventorysorter",
-  "version": "1.9.0-1.21",
-  "name": "Inventory Sorter",
-  "description": "Quickly and easily sort inventorys",
+  "id": "kiss",
+  "version": "${version}",
+  "name": "Keep Inventory Sorted, Simple",
+  "description": "Lightweight inventory sorting mod",
   "authors": [
-    "kyrptonaught"
+    "Manu"
   ],
   "contact": {
-    "homepage": "https://www.curseforge.com/minecraft/mc-mods/inventory-sorting",
-    "sources": "https://github.com/kyrptonaught/Inventory-Sorter"
+    "homepage": "https://modrinth.com/mod/keep-inventory-sorted-simple",
+    "issues": "https://github.com/manuelgrabowski/KeepInventorySortedSimple/issues",
+    "sources": "https://github.com/manuelgrabowski/KeepInventorySortedSimple"
   },
   "license": "MIT",
-  "icon": "assets/inventorysorter/icon.png",
+  "icon": "assets/kiss/icon.png",
   "environment": "*",
   "mixins": [
     {
-      "config": "net.kyrptonaught.inventorysorter.json",
+      "config": "net.manu_faktur.kiss.json",
       "environment": "*"
     }
   ],
   "entrypoints": {
     "main": [
-      "net.kyrptonaught.inventorysorter.InventorySorterMod"
+      "net.manu_faktur.kiss.KeepInventorySortedSimple"
     ],
     "client": [
-      "net.kyrptonaught.inventorysorter.client.InventorySorterModClient"
+      "net.manu_faktur.kiss.client.KeepInventorySortedSimpleClient"
     ],
     "modmenu": [
-      "net.kyrptonaught.inventorysorter.client.modmenu.ModMenuIntegration"
+      "net.manu_faktur.kiss.client.modmenu.ModMenuIntegration"
     ]
   },
   "depends": {

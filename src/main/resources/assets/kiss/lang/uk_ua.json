@@ -1,0 +1,15 @@
+{
+  "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
+  "net.manu_faktur.kiss.sort": "Сортувати інвентар",
+  "net.manu_faktur.kiss.config.category.display": "Відображати",
+  "net.manu_faktur.kiss.config.category.logic": "Авто",
+  "net.manu_faktur.kiss.config.category.activation": "Активація",
+  "net.manu_faktur.kiss.config.displaysort": "Відображати кнопку в інвентарі",
+  "net.manu_faktur.kiss.config.middleclick": "Натискання колесом по слоту, щоб відсортувати інвентар",
+  "net.manu_faktur.kiss.config.doubleclick": "Подвійний клік по слоту, щоб відсортувати інвентар",
+  "net.manu_faktur.kiss.config.seperatebtn": "Завжди відображати кнопку в інвентарі гравця",
+  "net.manu_faktur.kiss.config.sortplayer": "Сортувати інвентар гравця",
+  "net.manu_faktur.kiss.config.sorttype": "Метод сортування",
+  "net.manu_faktur.kiss.config.displaytooltip": "Відображати підказку кнопки сортування",
+  "net.manu_faktur.kiss.config.sortmousehighlighted": "Сортування інвентарю при наведенні курсору миші"
+}

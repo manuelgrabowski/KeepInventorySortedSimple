@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "net.manu_faktur.kiss.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MixinContainer",
+    "ServerPlayerEntityMixin",
+    "ScreenHandlerTypeAccessor"
+  ],
+  "client": [
+    "MixinContainerScreen",
+    "MixinCreativeInventoryScreen"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
