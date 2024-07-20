@@ -21,7 +21,7 @@ import java.util.function.BiConsumer;
 
 public class SortCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess registryAccess, CommandManager.RegistrationEnvironment environment) {
-        LiteralArgumentBuilder<ServerCommandSource> invsortCommand = CommandManager.literal("invsort").requires((source) -> source.hasPermissionLevel(0));
+        LiteralArgumentBuilder<ServerCommandSource> invsortCommand = CommandManager.literal("kiss").requires((source) -> source.hasPermissionLevel(0));
 
         invsortCommand.then(CommandManager.literal("sort")
                 .requires((source) -> source.hasPermissionLevel(0))
