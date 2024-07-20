@@ -72,8 +72,18 @@ public class SortCases {
 
                 List<String> stringList = new ArrayList<>(27);
                 for (ItemStack itemStack : defaultedList) {
-                    stringList.add(itemStack.getItem().toString());
+                    String shulkerboxContentString = itemStack.getItem().toString();
+                    // Ignore empty slots for sorting
+                    if(!shulkerboxContentString.equals("minecraft:air")) {
+                        stringList.add(shulkerboxContentString);
+                    }
                 }
+
+                // group empty boxes at after all other shulkers
+                if(stringList.isEmpty()) {
+                    stringList.add("zzzEMPTYBOX");
+                }
+
                 sortString = "minecraft:shulker_box" // group all shulkerboxes together
                         + String.join(" ", stringList) // sort them by their content
                         + item; // sort boxes with identical content by their color
