@@ -54,18 +54,8 @@ public class ModMenuIntegration implements ModMenuApi {
 
             blackListSection.addConfigItem(new BooleanItem(Text.translatable("key.inventorysorter.config.showdebug"), options.debugMode, false).setSaveConsumer(val -> options.debugMode = val).setToolTipWithNewLine("key.inventorysorter.config.debugtooltip"));
 
-            TextItem blackListURL = (TextItem) new TextItem(Text.translatable("key.inventorysorter.config.blacklistURL"), ignoreList.blacklistDownloadURL, IgnoreList.DOWNLOAD_URL).setMaxLength(1024).setSaveConsumer(val -> ignoreList.blacklistDownloadURL = val);
-            blackListSection.addConfigItem(blackListURL);
-
             StringList hideList = (StringList) new StringList(Text.translatable("key.inventorysorter.config.hidesort"), ignoreList.hideSortBtnsList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.hideSortBtnsList = Sets.newHashSet(val)).setToolTipWithNewLine("key.inventorysorter.config.hidetooltip");
             StringList nosortList = (StringList) new StringList(Text.translatable("key.inventorysorter.config.nosort"), ignoreList.doNotSortList.stream().toList(), new ArrayList<>()).setSaveConsumer(val -> ignoreList.doNotSortList = Sets.newHashSet(val)).setToolTipWithNewLine("key.inventorysorter.config.nosorttooltip");
-
-            blackListSection.addConfigItem(new ButtonItem(Text.translatable("key.inventorysorter.config.downloadListButton")).setClickEvent(() -> {
-                blackListURL.save();
-                ignoreList.downloadList();
-                hideList.setValue(ignoreList.hideSortBtnsList.stream().toList());
-                nosortList.setValue(ignoreList.doNotSortList.stream().toList());
-            }));
 
             blackListSection.addConfigItem(hideList);
             blackListSection.addConfigItem(nosortList);

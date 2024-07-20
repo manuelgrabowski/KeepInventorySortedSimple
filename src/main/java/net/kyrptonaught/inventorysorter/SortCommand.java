@@ -43,19 +43,6 @@ public class SortCommand {
                     return 1;
                 }));
 
-        invsortCommand.then(CommandManager.literal("downloadBlacklist")
-                .then(CommandManager.argument("URL", StringArgumentType.greedyString()).executes(context -> {
-                    String URL = StringArgumentType.getString(context, "URL");
-                    InventorySorterMod.getBlackList().downloadList(URL);
-                    context.getSource().getServer().getPlayerManager().getPlayerList().forEach(SyncBlacklistPacket::sync);
-                    return 1;
-                })).executes(context -> {
-                    InventorySorterMod.getBlackList().downloadList();
-                    context.getSource().getServer().getPlayerManager().getPlayerList().forEach(SyncBlacklistPacket::sync);
-                    return 1;
-                })
-        );
-
         invsortCommand.then(CommandManager.literal("blacklist")
                 .requires((source) -> source.hasPermissionLevel(2))
                 .then(CommandManager.literal("doNotSort")

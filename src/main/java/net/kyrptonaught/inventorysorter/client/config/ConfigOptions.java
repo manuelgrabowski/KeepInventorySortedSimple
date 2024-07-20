@@ -4,7 +4,6 @@ import blue.endless.jankson.Comment;
 import net.kyrptonaught.inventorysorter.InventorySorterMod;
 import net.kyrptonaught.inventorysorter.SortCases;
 import net.kyrptonaught.kyrptconfig.config.AbstractConfigFile;
-import net.kyrptonaught.kyrptconfig.config.ConfigWDefaults;
 import net.kyrptonaught.kyrptconfig.keybinding.CustomKeyBinding;
 
 public class ConfigOptions implements AbstractConfigFile {

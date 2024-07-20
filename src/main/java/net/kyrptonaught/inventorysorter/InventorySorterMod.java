@@ -9,11 +9,14 @@ import net.kyrptonaught.inventorysorter.network.InventorySortPacket;
 import net.kyrptonaught.inventorysorter.network.SyncBlacklistPacket;
 import net.kyrptonaught.inventorysorter.network.SyncInvSortSettingsPacket;
 import net.kyrptonaught.kyrptconfig.config.ConfigManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class InventorySorterMod implements ModInitializer {
     public static ConfigManager.MultiConfigManager configManager = new ConfigManager.MultiConfigManager(InventorySorterMod.MOD_ID);
     public static final String MOD_ID = "inventorysorter";
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
     @Override
     public void onInitialize() {
