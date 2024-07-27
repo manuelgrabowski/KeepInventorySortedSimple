@@ -1,7 +1,8 @@
 {
   "net.manu_faktur.kiss.config": "Configuration d'KISS",
   "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
-  "net.manu_faktur.kiss.sort": "Trier l'inventaire",
+  "net.manu_faktur.kiss.sortPrimary": "Trier l'inventaire (1)",
+  "net.manu_faktur.kiss.sortSecondary": "Trier l'inventaire (2)",
   "net.manu_faktur.kiss.config.category.display": "Affichage",
   "net.manu_faktur.kiss.config.category.logic": "Logique",
   "net.manu_faktur.kiss.config.category.activation": "Activation",

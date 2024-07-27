@@ -1,7 +1,8 @@
 {
   "net.manu_faktur.kiss.config": "KISS 配置",
   "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
-  "net.manu_faktur.kiss.sort": "排序库存",
+  "net.manu_faktur.kiss.sortPrimary": "排序库存 (1)",
+  "net.manu_faktur.kiss.sortSecondary": "排序库存 (2)",
   "net.manu_faktur.kiss.config.category.display": "显示",
   "net.manu_faktur.kiss.config.category.logic": "逻辑",
   "net.manu_faktur.kiss.config.category.activation": "触发",

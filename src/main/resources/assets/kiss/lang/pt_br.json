@@ -1,6 +1,7 @@
 {
   "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
-  "net.manu_faktur.kiss.sort": "Ordenar inventário",
+  "net.manu_faktur.kiss.sortPrimary": "Ordenar inventário (1)",
+  "net.manu_faktur.kiss.sortSecondary": "Ordenar inventário (2)",
   "net.manu_faktur.kiss.config.category.display": "Exibir",
   "net.manu_faktur.kiss.config.category.logic": "Logica",
   "net.manu_faktur.kiss.config.displaysort": "Botão de exibição no inventário",

@@ -45,7 +45,8 @@ public class ModMenuIntegration implements ModMenuApi {
             logicSection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.sortplayer"), options.sortPlayer, false).setSaveConsumer(val -> options.sortPlayer = val));
 
             ConfigSection activationSection = new ConfigSection(configScreen, Text.translatable("net.manu_faktur.kiss.config.category.activation"));
-            activationSection.addConfigItem(new KeybindItem(Text.translatable("net.manu_faktur.kiss.sort"), options.keybinding.rawKey, "key.mouse.middle").setSaveConsumer(key -> options.keybinding.setRaw(key)));
+            activationSection.addConfigItem(new KeybindItem(Text.translatable("net.manu_faktur.kiss.sortPrimary"), options.keybindingPrimary.rawKey, "key.mouse.middle").setSaveConsumer(key -> options.keybindingPrimary.setRaw(key)));
+            activationSection.addConfigItem(new KeybindItem(Text.translatable("net.manu_faktur.kiss.sortSecondary"), options.keybindingSecondary.rawKey, "key.keyboard.r").setSaveConsumer(key -> options.keybindingSecondary.setRaw(key)));
             activationSection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.sortmousehighlighted"), options.sortMouseHighlighted, true).setSaveConsumer(val -> options.sortMouseHighlighted = val));
 
             ConfigSection ignoreListSection = new ConfigSection(configScreen, Text.translatable("net.manu_faktur.kiss.config.category.ignorelist"));

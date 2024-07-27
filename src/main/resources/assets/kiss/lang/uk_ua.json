@@ -1,6 +1,7 @@
 {
   "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
-  "net.manu_faktur.kiss.sort": "Сортувати інвентар",
+  "net.manu_faktur.kiss.sortPrimary": "Сортувати інвентар (1)",
+  "net.manu_faktur.kiss.sortSecondary": "Сортувати інвентар (2)",
   "net.manu_faktur.kiss.config.category.display": "Відображати",
   "net.manu_faktur.kiss.config.category.logic": "Авто",
   "net.manu_faktur.kiss.config.category.activation": "Активація",

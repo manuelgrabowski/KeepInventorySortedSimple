@@ -1,7 +1,8 @@
 {
   "net.manu_faktur.kiss.config": "Настройки KISS",
   "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
-  "net.manu_faktur.kiss.sort": "Сортировать инвентарь",
+  "net.manu_faktur.kiss.sortPrimary": "Сортировать инвентарь (1)",
+  "net.manu_faktur.kiss.sortSecondary": "Сортировать инвентарь (2)",
   "net.manu_faktur.kiss.config.category.display": "Отображать",
   "net.manu_faktur.kiss.config.category.logic": "Авто",
   "net.manu_faktur.kiss.config.category.activation": "Активация",

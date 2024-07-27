@@ -19,8 +19,11 @@ public class ConfigOptions implements AbstractConfigFile {
     @Comment("Display Sort Button Tooltip")
     public boolean displayTooltip = true;
 
-    @Comment("Sort Inventory keybinding")
-    public final CustomKeyBinding keybinding = CustomKeyBinding.configDefault(KeepInventorySortedSimple.MOD_ID, "key.mouse.middle");
+    @Comment("Sort Inventory primary keybinding")
+    public final CustomKeyBinding keybindingPrimary = CustomKeyBinding.configDefault(KeepInventorySortedSimple.MOD_ID, "key.mouse.middle");
+
+    @Comment("Sort Inventory secondary keybinding")
+    public final CustomKeyBinding keybindingSecondary = CustomKeyBinding.configDefault(KeepInventorySortedSimple.MOD_ID, "key.keyboard.r");
 
     @Comment("Sort the inventory that the mouse cursor is hovering over")
     public Boolean sortMouseHighlighted = true;

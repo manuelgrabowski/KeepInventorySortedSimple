@@ -19,9 +19,16 @@ public class KeepInventorySortedSimpleClient implements ClientModInitializer {
         SyncIgnoreListPacket.registerReceiveIgnoreList();
 
         KeyBindingHelper.registerKeyBinding(new DisplayOnlyKeyBind(
-                "net.manu_faktur.kiss.sort",
+                "net.manu_faktur.kiss.sortPrimary",
                 "net.manu_faktur.kiss.name",
-                getConfig().keybinding,
+                getConfig().keybindingPrimary,
+                setKey -> KeepInventorySortedSimple.configManager.save()
+        ));
+
+        KeyBindingHelper.registerKeyBinding(new DisplayOnlyKeyBind(
+                "net.manu_faktur.kiss.sortSecondary",
+                "net.manu_faktur.kiss.name",
+                getConfig().keybindingSecondary,
                 setKey -> KeepInventorySortedSimple.configManager.save()
         ));
     }
@@ -35,6 +42,6 @@ public class KeepInventorySortedSimpleClient implements ClientModInitializer {
     }
 
     public static boolean isKeyBindingPressed(int pressedKeyCode, InputUtil.Type type) {
-        return getConfig().keybinding.matches(pressedKeyCode, type);
+        return getConfig().keybindingPrimary.matches(pressedKeyCode, type) || getConfig().keybindingSecondary.matches(pressedKeyCode, type);
     }
 }

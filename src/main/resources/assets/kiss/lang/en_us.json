@@ -1,7 +1,8 @@
 {
   "net.manu_faktur.kiss.config": "KISS Config",
   "net.manu_faktur.kiss.name": "Keep Inventory Sorted, Simple",
-  "net.manu_faktur.kiss.sort": "Sort Inventory",
+  "net.manu_faktur.kiss.sortPrimary": "Sort Inventory (primary)",
+  "net.manu_faktur.kiss.sortSecondary": "Sort Inventory (secondary)",
   "net.manu_faktur.kiss.config.category.display": "Display",
   "net.manu_faktur.kiss.config.category.logic": "Logic",
   "net.manu_faktur.kiss.config.category.activation": "Activation",
