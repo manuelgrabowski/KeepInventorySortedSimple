@@ -1,13 +1,12 @@
-# KISS – Keep Inventories Sorted, Simple.
+# KISS – Keep Inventories Sorted, Simple
 
 Lightweight inventory sorting mod, a very opinionated 1.21 update and fork of [Inventory Sorting](https://modrinth.com/mod/inventory-sorting).
 
-
-
 ## Screenshots
 
-tbd
-
+| Before sorting | After sorting |
+|----------------|---------------|
+| ![Messy inventory before sorting](https://cdn.modrinth.com/data/FbHSPTyF/images/08380e05b921fe4c09b4785341fc3b0545358e07.png) | ![Perfectly clean, sorted inventory](https://cdn.modrinth.com/data/FbHSPTyF/images/4e10f256933a0a36cc401ac90269fc19d5a5b149.png) |
 
 ## Configuration
 
@@ -18,9 +17,9 @@ I removed a few options, but I'm not sure if that resolved all issues._
 
 ## Usage
 
-You can use the middle mouse button to sort the inventory you're looking at. That keybinding can be changed in the
-configuration. That's pretty much it, there is not much more to it – check the rest of the configuration, but be aware
-that anything beyond this core functionality might be removed in upcoming versions (see below).
+You can use the middle mouse button or `R` to sort the inventory you're looking at. That keybindings can be changed in
+the configuration. That's pretty much it, there is not much more to it – check the rest of the configuration, but be
+aware that anything beyond this core functionality might be removed in upcoming versions (see below).
 
 While the mod is technically only required on the server, you should install it on server _and_ client. If you only
 install it on the server, vanilla clients can use it via the `/kiss` commands only.
@@ -39,8 +38,9 @@ install it on the server, vanilla clients can use it via the `/kiss` commands on
 
 More things might get kicked out in future version – I never want to sort the player inventory, so I'm not keen on
 keeping that code around, for example. That includes the "sort hovered inventory" setting as well. I'm also not too fond
-of the button and might remove it entirely.  
+of the GUI buttons and might remove it entirely.  
 As the [name suggests](https://en.wikipedia.org/wiki/KISS_principle), I intend to keep this mod as simple as possible to
 fill my needs.  
 
-A functioning 1.21 build of the original mod [is available](https://github.com/kyrptonaught/Inventory-Sorter/pull/123#issuecomment-2185101760), if that's what you're looking for.
+A functioning 1.21 build of the original mod [is available](https://github.com/kyrptonaught/Inventory-Sorter/pull/123#issuecomment-2185101760),
+if that's what you're looking for.
