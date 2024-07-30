@@ -41,7 +41,7 @@ public class ModMenuIntegration implements ModMenuApi {
             displaySection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.displaytooltip"), options.displayTooltip, true).setSaveConsumer(val -> options.displayTooltip = val));
 
             ConfigSection logicSection = new ConfigSection(configScreen, Text.translatable("net.manu_faktur.kiss.config.category.logic"));
-            logicSection.addConfigItem(new EnumItem<>(Text.translatable("net.manu_faktur.kiss.config.sorttype"), SortCases.SortType.values(), options.sortType, SortCases.SortType.NAME).setSaveConsumer(val -> options.sortType = val));
+            logicSection.addConfigItem(new EnumItem<>(Text.translatable("net.manu_faktur.kiss.config.sorttype"), SortCases.SortType.values(), options.sortType, SortCases.SortType.ID).setSaveConsumer(val -> options.sortType = val));
             logicSection.addConfigItem(new BooleanItem(Text.translatable("net.manu_faktur.kiss.config.sortplayer"), options.sortPlayer, false).setSaveConsumer(val -> options.sortPlayer = val));
 
             ConfigSection activationSection = new ConfigSection(configScreen, Text.translatable("net.manu_faktur.kiss.config.category.activation"));

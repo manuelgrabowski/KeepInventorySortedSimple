@@ -34,7 +34,6 @@ public class SortCases {
             }
         }
 
-
         return itemName;
     }
 
@@ -61,34 +60,38 @@ public class SortCases {
             sortString = enchantedBookNameCase(stack);
         if (item instanceof ToolItem)
             sortString = toolDurabilityCase(stack);
-
         if (component != null && item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock){
-            ContainerComponent container = stack.get(DataComponentTypes.CONTAINER);
-            if (container != null){
-                DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(27, ItemStack.EMPTY);
-                container.copyTo(defaultedList);
-
-                List<String> stringList = new ArrayList<>(27);
-                for (ItemStack itemStack : defaultedList) {
-                    String shulkerboxContentString = itemStack.getItem().toString();
-                    // Ignore empty slots for sorting
-                    if(!shulkerboxContentString.equals("minecraft:air")) {
-                        stringList.add(shulkerboxContentString);
-                    }
-                }
-
-                // group empty boxes at after all other shulkers
-                if(stringList.isEmpty()) {
-                    stringList.add("zzzEMPTYBOX");
-                }
-
-                sortString = "minecraft:shulker_box" // group all shulkerboxes together
-                        + String.join(" ", stringList) // sort them by their content
-                        + item; // sort boxes with identical content by their color
-            }
+            sortString = shulkerBoxCase(stack);
         }
 
         return sortString;
+    }
+
+    private static String shulkerBoxCase(ItemStack stack) {
+        ContainerComponent container = stack.get(DataComponentTypes.CONTAINER);
+        if (container != null) {
+            DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(27, ItemStack.EMPTY);
+            container.copyTo(defaultedList);
+
+            List<String> shulkerBoxContent = new ArrayList<>(27);
+            for (ItemStack itemStack : defaultedList) {
+                String shulkerboxContentString = itemStack.getItem().toString();
+                // Ignore empty slots for sorting
+                if(!shulkerboxContentString.equals("minecraft:air")) {
+                    shulkerBoxContent.add(shulkerboxContentString);
+                }
+            }
+
+            // group empty boxes after all other shulkers
+            if(shulkerBoxContent.isEmpty()) {
+                shulkerBoxContent.add("zzz_EmptyShulkerBox");
+            }
+
+            return "AAA_ShulkerBox" // group all shulkerboxes together at the front
+                    + String.join(" ", shulkerBoxContent) // sort them by their content
+                    + stack.getItem(); // sort boxes with identical content by their color
+        }
+        return "";
     }
 
     private static String playerHeadCase(ItemStack stack) {

@@ -10,7 +10,7 @@ Lightweight inventory sorting mod, a very opinionated 1.21 update and fork of [I
 
 ## Configuration
 
-Use [Mod Menu](https://modrinth.com/mod/modmenu) for GUI configuration, or the `/kiss` command otherwise.  
+Use [Mod Menu](https://modrinth.com/mod/modmenu) for GUI configuration, or the `/kiss` command otherwise.
 
 _Note: Configuration might be a bit messy. The original configuration seems to have had a few issues.
 I removed a few options, but I'm not sure if that resolved all issues._
@@ -22,7 +22,8 @@ the configuration. That's pretty much it, there is not much more to it – check
 aware that anything beyond this core functionality might be removed in upcoming versions (see below).
 
 While the mod is technically only required on the server, you should install it on server _and_ client. If you only
-install it on the server, vanilla clients can use it via the `/kiss` commands only.
+install it on the server, vanilla clients can use it via the `/kiss` commands only. Due to a [known issue with Modrinth](https://github.com/modrinth/knossos/issues/1612),
+I've marked the mod as `Required` on the client.
 
 ## Changes from original mod
 
@@ -40,7 +41,7 @@ More things might get kicked out in future version – I never want to sort the 
 keeping that code around, for example. That includes the "sort hovered inventory" setting as well. I'm also not too fond
 of the GUI buttons and might remove it entirely.  
 As the [name suggests](https://en.wikipedia.org/wiki/KISS_principle), I intend to keep this mod as simple as possible to
-fill my needs.  
+fill my needs.
 
 A functioning 1.21 build of the original mod [is available](https://github.com/kyrptonaught/Inventory-Sorter/pull/123#issuecomment-2185101760),
 if that's what you're looking for.

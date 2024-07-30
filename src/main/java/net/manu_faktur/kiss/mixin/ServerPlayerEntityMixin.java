@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class ServerPlayerEntityMixin implements InvSorterPlayer {
     private static final String saveKEY = KeepInventorySortedSimple.MOD_ID + "invsorter";
     private static final String sortTypeKey = "sorttype";
-    private SortCases.SortType sortType = SortCases.SortType.NAME;
+    private SortCases.SortType sortType = SortCases.SortType.ID;
 
     @Override
     public SortCases.SortType getSortType() {

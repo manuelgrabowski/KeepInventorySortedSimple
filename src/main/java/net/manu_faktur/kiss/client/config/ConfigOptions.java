@@ -15,7 +15,7 @@ public class ConfigOptions implements AbstractConfigFile {
     @Comment("Sorting also sorts player inventory")
     public boolean sortPlayer = false;
     @Comment("Method of sorting: NAME,CATEGORY,MOD,ID")
-    public SortCases.SortType sortType = SortCases.SortType.NAME;
+    public SortCases.SortType sortType = SortCases.SortType.ID;
     @Comment("Display Sort Button Tooltip")
     public boolean displayTooltip = true;
 
