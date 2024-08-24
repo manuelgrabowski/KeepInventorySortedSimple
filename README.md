@@ -12,12 +12,9 @@ Lightweight inventory sorting mod, a very opinionated 1.21 update and fork of [I
 
 Use [Mod Menu](https://modrinth.com/mod/modmenu) for GUI configuration, or the `/kiss` command otherwise.
 
-_Note: Configuration might be a bit messy. The original configuration seems to have had a few issues.
-I removed a few options, but I'm not sure if that resolved all issues._
-
 ## Usage
 
-You can use the middle mouse button or `R` to sort the inventory you're looking at. That keybindings can be changed in
+You can use the middle mouse button or `R` to sort the inventory you're looking at. These keybindings can be changed in
 the configuration. That's pretty much it, there is not much more to it – check the rest of the configuration, but be
 aware that anything beyond this core functionality might be removed in upcoming versions (see below).
 
@@ -43,5 +40,5 @@ of the GUI buttons and might remove it entirely.
 As the [name suggests](https://en.wikipedia.org/wiki/KISS_principle), I intend to keep this mod as simple as possible to
 fill my needs.
 
-A functioning 1.21 build of the original mod [is available](https://github.com/kyrptonaught/Inventory-Sorter/pull/123#issuecomment-2185101760),
-if that's what you're looking for.
+**Note:** A functioning 1.21 build of the original mod [is available](https://github.com/kyrptonaught/Inventory-Sorter/pull/123#issuecomment-2185101760)
+as well if that's what you're looking for.
