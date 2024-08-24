@@ -3,6 +3,7 @@ package net.manu_faktur.kiss.client.config;
 import blue.endless.jankson.Comment;
 import com.google.common.collect.Sets;
 import net.kyrptonaught.kyrptconfig.config.AbstractConfigFile;
+import net.manu_faktur.kiss.KeepInventorySortedSimple;
 import net.minecraft.registry.Registries;
 import net.minecraft.screen.ScreenHandlerType;
 import net.minecraft.util.Identifier;
@@ -50,10 +51,18 @@ public class IgnoreList implements AbstractConfigFile {
     );
 
     public boolean isDoNotSort(Identifier screenHandlerTypeID) {
-        return isDoNotDisplay(screenHandlerTypeID) || doNotSortList.contains(screenHandlerTypeID.toString()) || defaultDoNotSortList.contains(screenHandlerTypeID);
+        if(KeepInventorySortedSimple.getIgnoreList().doNotSortList.isEmpty()) {
+            return KeepInventorySortedSimple.getIgnoreList().doNotSortList.contains(screenHandlerTypeID.toString());
+        } else {
+            return defaultDoNotSortList.contains(screenHandlerTypeID);
+        }
     }
 
     public boolean isDoNotDisplay(Identifier screenHandlerTypeID) {
-        return defaultHideSortButtonList.contains(screenHandlerTypeID) || hideSortButtonList.contains(screenHandlerTypeID.toString());
+        if(KeepInventorySortedSimple.getIgnoreList().hideSortButtonList.isEmpty()) {
+            return KeepInventorySortedSimple.getIgnoreList().hideSortButtonList.contains(screenHandlerTypeID.toString());
+        } else {
+            return defaultHideSortButtonList.contains(screenHandlerTypeID);
+        }
     }
 }
