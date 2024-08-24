@@ -18,6 +18,7 @@ import net.minecraft.text.Text;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
@@ -62,32 +63,36 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
 
     @Inject(method = "mouseClicked", at = @At("HEAD"), cancellable = true)
     private void invsort$mouseClicked(double x, double y, int button, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
-        if (client == null || client.player == null)
-            return;
         if (KeepInventorySortedSimpleClient.isKeyBindingPressed(button, InputUtil.Type.MOUSE)) {
-            boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
-            if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
-                if (focusedSlot != null)
-                    playerOnlyInv = focusedSlot.inventory instanceof PlayerInventory;
-            }
-            InventorySortPacket.sendSortPacket(playerOnlyInv);
-            callbackInfoReturnable.setReturnValue(true);
+            performEventBasedSorting(callbackInfoReturnable);
         }
     }
 
     @Inject(method = "keyPressed", at = @At("HEAD"), cancellable = true)
     private void invsort$keyPressed(int keycode, int scancode, int modifiers, CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
+        if (KeepInventorySortedSimpleClient.isKeyBindingPressed(keycode, InputUtil.Type.KEYSYM)) {
+            performEventBasedSorting(callbackInfoReturnable);
+        }
+    }
+
+    @Unique
+    private void performEventBasedSorting(CallbackInfoReturnable<Boolean> callbackInfoReturnable) {
         if (client == null || client.player == null)
             return;
-        if (KeepInventorySortedSimpleClient.isKeyBindingPressed(keycode, InputUtil.Type.KEYSYM)) {
-            boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
-            if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
-                if (focusedSlot != null)
-                    playerOnlyInv = focusedSlot.inventory instanceof PlayerInventory;
+
+        // Don't interfere with Creative Mode middle mouse click "pick stack" default action
+        if (focusedSlot != null && client.player.isInCreativeMode() && focusedSlot.hasStack())
+            return;
+
+        boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
+        if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
+            if (focusedSlot != null) {
+                playerOnlyInv = focusedSlot.inventory instanceof PlayerInventory;
             }
-            InventorySortPacket.sendSortPacket(playerOnlyInv);
-            callbackInfoReturnable.setReturnValue(true);
         }
+
+        InventorySortPacket.sendSortPacket(playerOnlyInv);
+        callbackInfoReturnable.setReturnValue(true);
     }
 
     @Inject(method = "render", at = @At("TAIL"))
