@@ -19,22 +19,7 @@ import java.util.List;
 
 public class SortCases {
     static String getStringForSort(ItemStack stack, SortType sortType) {
-        Item item = stack.getItem();
-        String itemName = specialCases(stack);
-        switch (sortType) {
-            case CATEGORY -> {
-                ItemGroup group = getFirstItemGroup(stack);
-                return (group != null ? group.getDisplayName().getString() : "zzz") + itemName;
-            }
-            case MOD -> {
-                return Registries.ITEM.getId(item).getNamespace() + itemName;
-            }
-            case NAME -> {
-                return stack.getName() + itemName;
-            }
-        }
-
-        return itemName;
+        return getSortString(stack, sortType) + stackSize(stack);
     }
 
     private static ItemGroup getFirstItemGroup(ItemStack stack) {
@@ -47,86 +32,108 @@ public class SortCases {
         return null;
     }
 
-    private static String specialCases(ItemStack stack) {
+    private static String getSortBase(ItemStack stack, SortType sortType) {
+        Item item = stack.getItem();
+        String sortBaseString = item.toString();
+
+        switch (sortType) {
+            case CATEGORY -> {
+                ItemGroup group = getFirstItemGroup(stack);
+                sortBaseString = (group != null ? group.getDisplayName().getString() : "zzz");
+            }
+            case MOD -> sortBaseString = Registries.ITEM.getId(item).getNamespace();
+            case NAME -> sortBaseString = stack.getName().toString();
+        }
+
+        return sortBaseString;
+    }
+
+    private static String getSortString(ItemStack stack, SortType sortType) {
+        String sortString = getSortBase(stack, sortType);
         Item item = stack.getItem();
         ComponentMap component = stack.getComponents();
-        String sortString = item.toString();
 
         if (component != null && component.contains(DataComponentTypes.PROFILE))
-            sortString = playerHeadCase(stack);
-        if (stack.getCount() != stack.getMaxCount())
-            sortString = stackSize(stack);
+            sortString = playerHeadCase(stack, sortType);
         if (item instanceof EnchantedBookItem)
-            sortString = enchantedBookNameCase(stack);
+            sortString = enchantedBookNameCase(stack, sortType);
         if (item instanceof ToolItem)
-            sortString = toolDurabilityCase(stack);
+            sortString = toolDurabilityCase(stack, sortType);
         if (component != null && item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock){
-            sortString = shulkerBoxCase(stack);
+            sortString = shulkerBoxCase(stack, sortType);
         }
 
         return sortString;
     }
 
-    private static String shulkerBoxCase(ItemStack stack) {
+    private static String shulkerBoxCase(ItemStack stack, SortType sortType) {
         ContainerComponent container = stack.get(DataComponentTypes.CONTAINER);
         if (container != null) {
-            DefaultedList<ItemStack> defaultedList = DefaultedList.ofSize(27, ItemStack.EMPTY);
-            container.copyTo(defaultedList);
+            DefaultedList<ItemStack> shulkerContentCopy = DefaultedList.ofSize(27, ItemStack.EMPTY);
+            container.copyTo(shulkerContentCopy);
 
-            List<String> shulkerBoxContent = new ArrayList<>(27);
-            for (ItemStack itemStack : defaultedList) {
-                String shulkerboxContentString = itemStack.getItem().toString();
+            List<String> shulkerContentSortStrings = new ArrayList<>(27);
+            for (ItemStack currentShulkerContentStack : shulkerContentCopy) {
                 // Ignore empty slots for sorting
-                if(!shulkerboxContentString.equals("minecraft:air")) {
-                    shulkerBoxContent.add(shulkerboxContentString);
+                if(!currentShulkerContentStack.getItem().toString().equals("minecraft:air")) {
+                    shulkerContentSortStrings.add(getSortString(currentShulkerContentStack, sortType));
                 }
             }
 
-            // group empty boxes after all other shulkers
-            if(shulkerBoxContent.isEmpty()) {
-                shulkerBoxContent.add("zzz_EmptyShulkerBox");
+            // group empty shulkerboxes after all other shulkerboxes
+            if(shulkerContentSortStrings.isEmpty()) {
+                shulkerContentSortStrings.add("zzz_EmptyShulkerBox");
             }
 
             return "AAA_ShulkerBox" // group all shulkerboxes together at the front
-                    + String.join(" ", shulkerBoxContent) // sort them by their content
-                    + stack.getItem(); // sort boxes with identical content by their color
+                    + String.join(" ", shulkerContentSortStrings) // sort them by their content
+                    + getSortBase(stack, sortType); // sort boxes with identical content by their color
         }
-        return "";
+
+        // Fallback
+        return getSortBase(stack, sortType);
     }
 
-    private static String playerHeadCase(ItemStack stack) {
+    private static String playerHeadCase(ItemStack stack, SortType sortType) {
         ProfileComponent profileComponent = stack.getComponents().get(DataComponentTypes.PROFILE);
-        String ownerName = profileComponent.name().isPresent() ? profileComponent.name().get() : stack.getItem().toString();
-
-        // this is duplicated logic, so we should probably refactor
-        String count = "";
-        if (stack.getCount() != stack.getMaxCount()) {
-            count = Integer.toString(stack.getCount());
+        if (profileComponent != null && profileComponent.name().isPresent()) {
+            return profileComponent.name().get();
         }
 
-        return stack.getItem().toString() + " " + ownerName + count;
+        return getSortBase(stack, sortType);
     }
 
     private static String stackSize(ItemStack stack) {
-        return stack.getItem().toString() + stack.getCount();
+        String stackSize = "";
+
+        if (stack.getCount() != stack.getMaxCount())
+            stackSize = String.valueOf(stack.getCount());
+
+        return stackSize;
     }
 
-    private static String enchantedBookNameCase(ItemStack stack) {
+    private static String enchantedBookNameCase(ItemStack stack, SortType sortType) {
         ItemEnchantmentsComponent enchantmentsComponent = stack.getComponents().get(DataComponentTypes.STORED_ENCHANTMENTS);
         List<String> names = new ArrayList<>();
         StringBuilder enchantNames = new StringBuilder();
-        for (Object2IntMap.Entry<RegistryEntry<Enchantment>> enchant : enchantmentsComponent.getEnchantmentEntries()) {
-            names.add(Enchantment.getName(enchant.getKey(), enchant.getIntValue()).getString());
+        if (enchantmentsComponent != null) {
+            for (Object2IntMap.Entry<RegistryEntry<Enchantment>> enchant : enchantmentsComponent.getEnchantmentEntries()) {
+                names.add(Enchantment.getName(enchant.getKey(), enchant.getIntValue()).getString());
+            }
+
+            Collections.sort(names);
+            for (String enchant : names) {
+                enchantNames.append(enchant).append(" ");
+            }
+            return getSortBase(stack, sortType) + " " + enchantmentsComponent.getSize() + " " + enchantNames;
         }
-        Collections.sort(names);
-        for (String enchant : names) {
-            enchantNames.append(enchant).append(" ");
-        }
-        return stack.getItem().toString() + " " + enchantmentsComponent.getSize() + " " + enchantNames;
+
+        // Fallback
+        return getSortBase(stack, sortType);
     }
 
-    private static String toolDurabilityCase(ItemStack stack) {
-        return stack.getItem().toString() + stack.getDamage();
+    private static String toolDurabilityCase(ItemStack stack, SortType sortType) {
+        return getSortBase(stack, sortType) + stack.getDamage();
     }
 
     public enum SortType {
