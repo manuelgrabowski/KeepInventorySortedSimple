@@ -80,9 +80,15 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
         if (client == null || client.player == null)
             return;
 
-        // Don't interfere with Creative Mode middle mouse click "pick stack" default action
-        if (focusedSlot != null && client.player.isInCreativeMode() && focusedSlot.hasStack())
-            return;
+        // Don't interfere with Creative Mode middle mouse click default actions
+        if(client.player.isInCreativeMode()) {
+            // allow picking stack
+            if (focusedSlot != null && focusedSlot.hasStack())
+                return;
+            // allow dragging an already picked stack
+            if (!client.player.currentScreenHandler.getCursorStack().isEmpty())
+                return;
+        }
 
         boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
         if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
