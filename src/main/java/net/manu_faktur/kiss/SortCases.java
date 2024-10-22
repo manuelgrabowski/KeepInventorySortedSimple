@@ -55,9 +55,9 @@ public class SortCases {
 
         if (component != null && component.contains(DataComponentTypes.PROFILE))
             sortString = playerHeadCase(stack, sortType);
-        if (item instanceof EnchantedBookItem)
+        if (stack.isOf(Items.ENCHANTED_BOOK))
             sortString = enchantedBookNameCase(stack, sortType);
-        if (item instanceof ToolItem)
+        if (item instanceof MiningToolItem)
             sortString = toolDurabilityCase(stack, sortType);
         if (component != null && item instanceof BlockItem blockItem && blockItem.getBlock() instanceof ShulkerBoxBlock){
             sortString = shulkerBoxCase(stack, sortType);
