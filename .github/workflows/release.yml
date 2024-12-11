@@ -33,4 +33,3 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
           version-type: release
-          files: build/libs/*.jar
