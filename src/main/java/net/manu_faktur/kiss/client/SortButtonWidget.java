@@ -55,24 +55,6 @@ public class SortButtonWidget extends TexturedButtonWidget {
         context.getMatrices().pop();
     }
 
-    @Override
-    public boolean mouseScrolled(double mouseX, double mouseY, double horizontalAmount, double verticalAmount) {
-        int current = KeepInventorySortedSimpleClient.getConfig().sortType.ordinal();
-        if (verticalAmount > 0) {
-            current++;
-            if (current >= SortCases.SortType.values().length)
-                current = 0;
-        } else {
-            current--;
-            if (current < 0)
-                current = SortCases.SortType.values().length - 1;
-        }
-        KeepInventorySortedSimpleClient.getConfig().sortType = SortCases.SortType.values()[current];
-        KeepInventorySortedSimple.configManager.save();
-        KeepInventorySortedSimpleClient.syncConfig();
-        return true;
-    }
-
 
     public void renderTooltip(DrawContext context, int mouseX, int mouseY) {
         if (KeepInventorySortedSimpleClient.getConfig().displayTooltip && this.isHovered()) {
