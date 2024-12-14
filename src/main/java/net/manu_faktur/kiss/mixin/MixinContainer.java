@@ -23,7 +23,7 @@ public abstract class MixinContainer implements SortableContainer {
     @Override
     public Inventory getInventory() {
         if (!hasSlots()) return null;
-        return this.slots.get(0).inventory;
+        return this.slots.getFirst().inventory;
     }
 
     @Override
