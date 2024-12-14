@@ -130,16 +130,6 @@ public class InventoryHelper {
         return ItemStack.areItemsAndComponentsEqual(itemStack_1, itemStack_2);
     }
 
-    public static boolean shouldDisplayButton(PlayerEntity player) {
-        if (player.currentScreenHandler == null || !player.currentScreenHandler.canUse(player) || player.currentScreenHandler instanceof PlayerScreenHandler)
-            return true;
-        ScreenHandlerType<?> type = ((ScreenHandlerTypeAccessor) player.currentScreenHandler).gettype();
-        if (type == null) return true;
-        Identifier id = Registries.SCREEN_HANDLER.getId(type);
-        if (id == null) return true;
-        return !KeepInventorySortedSimple.getIgnoreList().isDoNotDisplay(id);
-    }
-
     public static boolean canSortInventory(PlayerEntity player) {
         if (player.currentScreenHandler instanceof PlayerScreenHandler) return false;
         return canSortInventory(player, player.currentScreenHandler);
@@ -156,8 +146,6 @@ public class InventoryHelper {
     }
 
     private static boolean isSortableContainer(ScreenHandler screenHandler, Identifier screenID) {
-        if (KeepInventorySortedSimple.getIgnoreList().isDoNotSort(screenID))
-            return false;
         if (!((SortableContainer) screenHandler).hasSlots())
             return false;
 

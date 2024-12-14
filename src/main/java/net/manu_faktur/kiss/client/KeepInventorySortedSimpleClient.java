@@ -4,8 +4,6 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
 import net.manu_faktur.kiss.KeepInventorySortedSimple;
-import net.manu_faktur.kiss.client.config.ConfigOptions;
-import net.manu_faktur.kiss.network.SyncIgnoreListPacket;
 import net.manu_faktur.kiss.network.SyncInvSortSettingsPacket;
 import net.kyrptonaught.kyrptconfig.keybinding.DisplayOnlyKeyBind;
 import net.minecraft.client.util.InputUtil;

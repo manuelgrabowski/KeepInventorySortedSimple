@@ -39,28 +39,7 @@ public class SortButtonWidget extends TexturedButtonWidget {
 
     @Override
     public void onPress() {
-        if (GLFW.glfwGetKey(MinecraftClient.getInstance().getWindow().getHandle(), GLFW.GLFW_KEY_LEFT_CONTROL) == 1) {
-            ClientPlayerEntity player = MinecraftClient.getInstance().player;
-            if (player != null && InventoryHelper.canSortInventory(player)) {
-                String screenID;
-                Identifier screenIdentifier = Registries.SCREEN_HANDLER.getId(MinecraftClient.getInstance().player.currentScreenHandler.getType());
-                if(screenIdentifier != null) {
-                    screenID = screenIdentifier.toString();
-                } else {
-                    screenID = "Unable to determine Screen ID";
-                }
-
-                MutableText MODID = Text.literal("[" + KeepInventorySortedSimple.MOD_ID + "]: ").formatted(Formatting.BLUE);
-                MutableText autoDNS = (Text.translatable("net.manu_faktur.kiss.sortbtn.clickhere")).formatted(Formatting.UNDERLINE, Formatting.WHITE)
-                        .styled((style) -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/kiss ignorelist doNotSort " + screenID)));
-                MutableText autoDND = (Text.translatable("net.manu_faktur.kiss.sortbtn.clickhere")).formatted(Formatting.UNDERLINE, Formatting.WHITE)
-                        .styled((style) -> style.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/kiss ignorelist doNotDisplay " + screenID)));
-                MinecraftClient.getInstance().player.sendMessage(MODID.copyContentOnly().append(autoDNS).append(Text.translatable("net.manu_faktur.kiss.sortbtn.dnsadd").formatted(Formatting.WHITE)), false);
-                MinecraftClient.getInstance().player.sendMessage(MODID.copyContentOnly().append(autoDND).append(Text.translatable("net.manu_faktur.kiss.sortbtn.dndadd").formatted(Formatting.WHITE)), false);
-            } else
-                MinecraftClient.getInstance().player.sendMessage(Text.literal("[" + KeepInventorySortedSimple.MOD_ID + "]: ").append(Text.translatable("net.manu_faktur.kiss.sortbtn.error")), false);
-        } else
-            InventorySortPacket.sendSortPacket(playerInv);
+        InventorySortPacket.sendSortPacket(playerInv);
     }
 
     @Override
