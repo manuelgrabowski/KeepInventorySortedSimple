@@ -3,24 +3,17 @@ package net.manu_faktur.kiss.client;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.manu_faktur.kiss.InventoryHelper;
 import net.manu_faktur.kiss.KeepInventorySortedSimple;
-import net.manu_faktur.kiss.SortCases;
+import net.manu_faktur.kiss.client.config.KissConfig;
 import net.manu_faktur.kiss.network.InventorySortPacket;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ButtonTextures;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
-import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.client.gl.ShaderProgramKeys;
 import net.minecraft.client.render.RenderLayer;
-import net.minecraft.registry.Registries;
-import net.minecraft.text.ClickEvent;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,14 +50,10 @@ public class SortButtonWidget extends TexturedButtonWidget {
 
 
     public void renderTooltip(DrawContext context, int mouseX, int mouseY) {
-        if (KeepInventorySortedSimpleClient.getConfig().displayTooltip && this.isHovered()) {
+        if (KissConfig.displayTooltip && this.isHovered()) {
             List<Text> lines = new ArrayList<>();
-            lines.add(Text.translatable("net.manu_faktur.kiss.sortbtn.sort").append(Text.translatable(KeepInventorySortedSimpleClient.getConfig().sortType.getTranslationKey())));
-            if (KeepInventorySortedSimpleClient.getConfig().debugMode) {
-                lines.add(Text.translatable("net.manu_faktur.kiss.sortbtn.debug"));
-                lines.add(Text.translatable("net.manu_faktur.kiss.sortbtn.debug2"));
-            }
-            context.drawTooltip(MinecraftClient.getInstance().textRenderer, lines, getX(), getY());
+            lines.add(Text.translatable("net.manu_faktur.kiss.sortbtn.sort").append(Text.translatable("kiss.midnightconfig.enum.SortType." + KissConfig.sortType)));
+            context.drawTooltip(MinecraftClient.getInstance().textRenderer, lines, mouseX, mouseY);
         }
     }
 }

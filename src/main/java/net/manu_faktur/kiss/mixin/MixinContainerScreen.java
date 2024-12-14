@@ -3,9 +3,11 @@ package net.manu_faktur.kiss.mixin;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.manu_faktur.kiss.InventoryHelper;
+import net.manu_faktur.kiss.KeepInventorySortedSimple;
 import net.manu_faktur.kiss.client.KeepInventorySortedSimpleClient;
 import net.manu_faktur.kiss.client.SortButtonWidget;
 import net.manu_faktur.kiss.client.SortableContainerScreen;
+import net.manu_faktur.kiss.client.config.KissConfig;
 import net.manu_faktur.kiss.network.InventorySortPacket;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -53,11 +55,16 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
     private void invsort$init(CallbackInfo callbackinfo) {
         if (client == null || client.player == null)
             return;
-        if (KeepInventorySortedSimpleClient.getConfig().displaySort && InventoryHelper.shouldDisplayButton(client.player)) {
-            boolean playerOnly = !InventoryHelper.canSortInventory(client.player);
-            this.addDrawableChild(invsort$SortBtn = new SortButtonWidget(this.x + this.backgroundWidth - 20, this.y + (playerOnly ? (backgroundHeight - 95) : 6), playerOnly));
-            if (!playerOnly && KeepInventorySortedSimpleClient.getConfig().separateBtn)
-                this.addDrawableChild(new SortButtonWidget(invsort$SortBtn.getX(), this.y + ((SortableContainerScreen) (this)).getMiddleHeight(), true));
+
+        boolean isPlayerInventory = !InventoryHelper.canSortInventory(client.player);
+
+        if ((KissConfig.displaySortButtonInventories && !isPlayerInventory) || (KissConfig.displaySortButtonPlayerInventory && isPlayerInventory)) {
+            this.addDrawableChild(invsort$SortBtn = new SortButtonWidget(this.x + this.backgroundWidth - 20, this.y + (isPlayerInventory ? (backgroundHeight - 95) : 6), isPlayerInventory));
+        }
+
+        if (!isPlayerInventory && KissConfig.displaySortButtonPlayerInventory) {
+            this.addDrawableChild(new SortButtonWidget(this.x + this.backgroundWidth - 20, this.y + ((SortableContainerScreen) (this)).getMiddleHeight(), true));
+
         }
     }
 
@@ -91,7 +98,7 @@ public abstract class MixinContainerScreen extends Screen implements SortableCon
         }
 
         boolean playerOnlyInv = !InventoryHelper.canSortInventory(client.player);
-        if (!playerOnlyInv && KeepInventorySortedSimpleClient.getConfig().sortMouseHighlighted) {
+        if (!playerOnlyInv && KissConfig.sortMouseHoveredInventory) {
             if (focusedSlot != null) {
                 playerOnlyInv = focusedSlot.inventory instanceof PlayerInventory;
             }

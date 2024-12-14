@@ -138,9 +138,5 @@ public class SortCases {
 
     public enum SortType {
         NAME, CATEGORY, MOD, ID;
-
-        public String getTranslationKey() {
-            return "net.manu_faktur." + KeepInventorySortedSimple.MOD_ID + ".sorttype." + this.toString().toLowerCase();
-        }
     }
 }

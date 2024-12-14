@@ -6,8 +6,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.manu_faktur.kiss.SortCases;
-import net.manu_faktur.kiss.client.KeepInventorySortedSimpleClient;
-import net.manu_faktur.kiss.client.config.ConfigOptions;
+import net.manu_faktur.kiss.client.config.KissConfig;
 import net.manu_faktur.kiss.interfaces.InvSorterPlayer;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
@@ -26,17 +25,14 @@ public record SyncInvSortSettingsPacket(int sortType) implements CustomPayload {
 
     @Environment(EnvType.CLIENT)
     public static void registerSyncOnPlayerJoin() {
-        ConfigOptions config = KeepInventorySortedSimpleClient.getConfig();
-        ClientPlayNetworking.send(new SyncInvSortSettingsPacket(config.sortType.ordinal()));
+        ClientPlayNetworking.send(new SyncInvSortSettingsPacket(KissConfig.sortType.ordinal()));
     }
 
     public static void registerReceiveSyncData() {
         PayloadTypeRegistry.playC2S().register(SyncInvSortSettingsPacket.ID, SyncInvSortSettingsPacket.CODEC);
         ServerPlayNetworking.registerGlobalReceiver(SyncInvSortSettingsPacket.ID, ((payload, context) -> {
             ServerPlayerEntity player = context.player();
-            player.getServer().execute(() -> {
-                ((InvSorterPlayer) player).setSortType(SortCases.SortType.values()[payload.sortType]);
-            });
+            player.getServer().execute(() -> ((InvSorterPlayer) player).setSortType(SortCases.SortType.values()[payload.sortType]));
         }));
     }
 

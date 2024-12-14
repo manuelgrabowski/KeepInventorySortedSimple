@@ -27,9 +27,6 @@
     ],
     "client": [
       "net.manu_faktur.kiss.client.KeepInventorySortedSimpleClient"
-    ],
-    "modmenu": [
-      "net.manu_faktur.kiss.client.modmenu.ModMenuIntegration"
     ]
   },
   "depends": {

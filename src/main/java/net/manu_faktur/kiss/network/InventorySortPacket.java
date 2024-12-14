@@ -7,7 +7,7 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.manu_faktur.kiss.InventoryHelper;
 import net.manu_faktur.kiss.SortCases;
-import net.manu_faktur.kiss.client.KeepInventorySortedSimpleClient;
+import net.manu_faktur.kiss.client.config.KissConfig;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
@@ -34,8 +34,8 @@ public record InventorySortPacket(boolean playerInv, int sortType) implements Cu
 
     @Environment(EnvType.CLIENT)
     public static void sendSortPacket(boolean playerInv) {
-        ClientPlayNetworking.send(new InventorySortPacket(playerInv, KeepInventorySortedSimpleClient.getConfig().sortType.ordinal()));
-        if (!playerInv && KeepInventorySortedSimpleClient.getConfig().sortPlayer)
+        ClientPlayNetworking.send(new InventorySortPacket(playerInv, KissConfig.sortType.ordinal()));
+        if (!playerInv && KissConfig.alsoSortPlayerInventory)
             sendSortPacket(true);
     }
 
