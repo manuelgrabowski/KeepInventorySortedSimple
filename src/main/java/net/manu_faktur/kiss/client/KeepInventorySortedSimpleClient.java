@@ -3,7 +3,6 @@ package net.manu_faktur.kiss.client;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.manu_faktur.kiss.KeepInventorySortedSimple;
 import net.manu_faktur.kiss.network.SyncInvSortSettingsPacket;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
@@ -37,7 +36,6 @@ public class KeepInventorySortedSimpleClient implements ClientModInitializer {
     }
 
     public static boolean isKeyBindingPressed(int pressedKeyCode, InputUtil.Type type) {
-        KeepInventorySortedSimple.LOGGER.info("Pressed " + pressedKeyCode);
         return primaryKeyBinding.matchesKey(pressedKeyCode, type.ordinal())  || secondaryKeyBinding.matchesKey(pressedKeyCode, type.ordinal()) ||
                 primaryKeyBinding.matchesMouse(pressedKeyCode)  || secondaryKeyBinding.matchesMouse(pressedKeyCode);
     }
