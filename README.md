@@ -1,3 +1,8 @@
+⚠️ Mod no longer updated for the time being.  
+The original mod has been revived and updated for current versions: https://inventorysorter.meza.gg/
+
+---
+
 # KISS – Keep Inventories Sorted, Simple
 
 Lightweight inventory sorting mod, an opinionated fork of [Inventory Sorting](https://modrinth.com/mod/inventory-sorting).
